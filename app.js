@@ -10,6 +10,14 @@ const {
 } = require("./auth.json");
 client.login(token);
 
+// Event array to make the code more readable.
+const eventArray = [
+    "ready",
+    "reconnecting",
+    "message"
+];
+
+
 // Command array to store our DKG commands
 const cmdArray = [
     "*greet", // 0
@@ -29,16 +37,16 @@ const cmdArray = [
 ];
 
 // Print off to console to let us know the bot is online, and to show us if the bot is trying to reconnect due to any kind of issue. Most likely internet or server outage
-client.on("ready", () => {
+client.on(eventArray[0], () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("reconnecting", () => {
+client.on(eventArray[1], () => {
     console.log(`${client.user.tag} is trying to reconnect!`);
 });
 
 // Begin listening for the commands in our command array
-client.on("message", async msg => {
+client.on(eventArray[2], async msg => {
     // Message variable needing declared
     const msgContent = msg.content.toLowerCase();
     const eventDate = "2020-08-28 00:00:00";
