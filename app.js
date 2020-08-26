@@ -20,20 +20,21 @@ const eventArray = [
 
 // Command array to store our DKG commands
 const cmdArray = [
-    "*greet", // 0
-    "*help",
-    "*bully",
-    "*detailedhelp",
-    "*invite",
-    "*ark", // 5
-    "*helpjoinark",
-    "*mc",
-    "*helpjoinmc",
-    "*online",
-    "*dkcrate", // 10
-    "*purge",
-    "*math",
-    "*event"
+    ///*
+    "greet", // 0
+    "help",
+    "beat",
+    "detailedhelp",
+    "invite",
+    "ark", // 5
+    "helpjoinark",
+    "mc",
+    "helpjoinmc",
+    "online",
+    "purge", // 10
+    "math",
+    "event"
+    //*/
 ];
 
 // Print off to console to let us know the bot is online, and to show us if the bot is trying to reconnect due to any kind of issue. Most likely internet or server outage
@@ -49,6 +50,7 @@ client.on(eventArray[1], () => {
 client.on(eventArray[2], async msg => {
     // Message variable needing declared
     const msgContent = msg.content.toLowerCase();
+    const cmdPrefix = "*";
     const eventDate = "2020-08-28 00:00:00";
     const format = "m/d/y H:M";
     var dayInMs = 86400000;
@@ -56,40 +58,50 @@ client.on(eventArray[2], async msg => {
     var minuteInMS = 60000;
     // end variable defining
 
-    if (msgContent === cmdArray[0]) {
+    if (msg.content.startsWith(cmdPrefix + cmdArray[0])) {
         msg.channel.send("Hi, " + "<@" + msg.author.id + ">" + "! It's nice to talk to you! I get pretty lonely sometimes, because Zero keeps me in a box...");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[0] + "```");
     }
-    else if (msgContent === cmdArray[1]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[1])) {
         msg.channel.send("Currently there is 13 possible commands, \n```\n*greet\n*help\n*detailedhelp\n*bully\n*invite\n*ark\n*helpjoinark\n*mc\n*helpjoinmc\n*online\n*purge (admin only)\n*math\n*event```");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[1] + "```");
     }
-    else if (msgContent === cmdArray[2]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[2])) {
         msg.channel.send("Ouch! Someone help me I need an adult!! <@" + msg.author.id + "> is beating me!");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[2] + "```");
     }
-    else if (msgContent === cmdArray[3]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[3])) {
         msg.channel.send("Here is a detailed list of commands -\n\n```*greet``` - Replies to you with a greeting\n\n```*help``` - Lists all supported commands\n\n```*detailedhelp``` - Shows advanced info on commands\n\n```*bully``` - Picks on our bot. Are you heartless?\n\n```*invite``` - Shows the Discord Invite Link" +
             "\n\n```*ark``` - Displays basic Ark info\n\n```*helpjoinark``` - Teaches you how to add favorite servers\n\n```*mc``` - Displays basic MC info\n\n```*helpjoinmc``` - Teaches you how to join our Minecraft Server\n\n```*online``` - Checks to see if the Bot is online" +
             "\n\n```*math``` - Let's you calculate any 2 numbers.\n Valid Format - ```InputNumber [Input  Math Operator such as +, -, *, /, ^] InputNumber```\n```*event``` - Shows our next upcoming event for the community");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[3] + "```");
     }
-    else if (msgContent === cmdArray[4]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[4])) {
         msg.channel.send("https://discord.gg/vZ7KMAe");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[4] + "```");
     }
-    else if (msgContent === cmdArray[5]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[5])) {
         msg.channel.send("We host all 6 story maps on a cluster. You can join anytime by using the links in <#663801407513821185>.");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[5] + "```");
     }
-    else if (msgContent === cmdArray[6]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[6])) {
         msg.channel.send("Here is a list of our server IPs. You may copy and paste them directly into steam server favorites to save and join our server.\n\nThe Island - ```107.2.43.192:27102```\nScorched Earth - ```107.2.43.192:27106```\nAberration - ```107.2.43.192:27112```\nExtinction - ```107.2.43.192:27116```\nValguero - ```107.2.43.192:27120```\nGenesis Part 1 - ```107.2.43.192:27124```" +
             "\nOnce the IP you want is copied, head to steam. Navigate to View ---> Servers ---> Favorites ---> Add a Server | and just paste in the IP you copied. Now select Find Games at this Address and once found, add it to your favorites. This will let our servers appear in your favorites tab in game. Make sure to remove any old entries so you don\"t clutter your favorites tab.");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[6] + "```");
     }
-    else if (msgContent === cmdArray[7]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[7])) {
         msg.channel.send("We host a public Minecraft server with 64 slots and over 35 game modes. You can join anytime by using the link in <#663415309671333898>");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[7] + "```");
     }
-    else if (msgContent === cmdArray[8]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[8])) {
         msg.channel.send("For detailed help on joining our Minecraft server, head on over to this link -\n\nhttps://github.com/x0Z3ro0x/DKG-MC-Server/wiki/Joining-the-Server");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[8] + "```");
     }
-    else if (msgContent === cmdArray[9]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[9])) {
         msg.channel.send("Did you really just ask me that <@" + msg.author.id + ">? Yes I am online and working as intended, who do you think I am, Nugget Bot? :rolling_eyes:");
+        client.channels.cache.get("615509476317069315").send(msg.author.username + " just tried using command - ```" + cmdPrefix + cmdArray[9] + "```");
     }
-    else if (msgContent === cmdArray[11]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[10])) {
         const member = msg.member;
         if (member.roles.cache.has('615380530480939027')) {
             async function clear() {
@@ -100,9 +112,10 @@ client.on(eventArray[2], async msg => {
         }
         else {
             msg.channel.send("Sorry Zero beat me until I learned not to let your user group access this command. I won't make that mistake again so come back when you are an OG or Admin.");
+            client.channels.cache.get("615509476317069315").send(msg.author.username + " just tried using command - ```" + cmdPrefix + cmdArray[10] + "```");
         }
     }
-    else if (msgContent.includes(cmdArray[12])) {
+    else if (msgContent.includes(cmdPrefix + cmdArray[11])) {
         var args = msgContent.split(" ");
         var isNumber = Number(args[1]);
         var isNumber2 = Number(args[3]);
@@ -129,7 +142,7 @@ client.on(eventArray[2], async msg => {
             msg.channel.send(isNumber + " ^ " + isNumber2 + " = " + calculation);
         }
     }
-    else if (msgContent === cmdArray[13]) {
+    else if (msg.content.startsWith(cmdPrefix + cmdArray[12])) {
         var dateTimePackage = require("node-datetime");
         var nextClanEventDate = dateTimePackage.create(eventDate);
         var nextClanEventDateModify = dateTimePackage.create(eventDate);
@@ -148,7 +161,7 @@ client.on(eventArray[2], async msg => {
         var minutesLeft = Math.floor(remainder2 / minuteInMS);
         var msgArray = [
             "Our next event is on: ```" + formatNextClanEventDate + " midnight UTC```\nThis gives you ",
-            + daysLeft + " days, ",
+            + daysLeft + " day(s), ",
             + hoursLeft + " hours and ",
             + minutesLeft + " minutes until the event begins. ",
             "This event is for our ",
@@ -166,7 +179,11 @@ client.on(eventArray[2], async msg => {
         else if (true) {
             msg.channel.send("It doesn't look like we have any pending events right now. Feel free to suggest one in <#615500059127316490>");
         }
-        
+
+    }
+    if (msg.content.startsWith(cmdPrefix) + msg.content.includes("test")) {
+        var msgArgs = msg.content.split(" ");
+
     }
     // End of command array
 
