@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Commands"
   ],
-  "SelectedNode": "\\app.js",
+  "SelectedNode": "\\Commands\\beat.js",
   "PreviewInSolutionExplorer": false
 }
