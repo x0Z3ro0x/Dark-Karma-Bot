@@ -48,12 +48,14 @@ client.on(eventArray[2], async msg => {
     const command = args.shift().toLowerCase();
 
     if (!client.commands.has(command)) return;
+    ///*
     try {
         client.commands.get(command).execute(msg, args);
     } catch (error) {
         console.error(error);
-        msg.reply("There was an issue executing that command!");
+        msg.channel.send("<@194132431551463424>, There was an issue executing this command! Please figure it out when you can!");
     }
+    //*/
     //end of command listening
 
     // Testing workspace
