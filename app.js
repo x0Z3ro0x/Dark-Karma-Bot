@@ -63,7 +63,7 @@ client.on(eventArray[2], async msg => {
         client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[0] + "```");
     }
     else if (msg.content.startsWith(cmdPrefix + cmdArray[1])) {
-        msg.channel.send("Currently there is 13 possible commands, \n```\n*greet\n*help\n*detailedhelp\n*bully\n*invite\n*ark\n*helpjoinark\n*mc\n*helpjoinmc\n*online\n*purge (admin only)\n*math\n*event```");
+        msg.channel.send("Currently there is 13 possible commands, \n```\n*greet\n*help\n*detailedhelp\n*beat\n*invite\n*ark\n*helpjoinark\n*mc\n*helpjoinmc\n*online\n*purge (admin only)\n*math\n*event```");
         client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[1] + "```");
     }
     else if (msg.content.startsWith(cmdPrefix + cmdArray[2])) {
@@ -71,7 +71,7 @@ client.on(eventArray[2], async msg => {
         client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[2] + "```");
     }
     else if (msg.content.startsWith(cmdPrefix + cmdArray[3])) {
-        msg.channel.send("Here is a detailed list of commands -\n\n```*greet``` - Replies to you with a greeting\n\n```*help``` - Lists all supported commands\n\n```*detailedhelp``` - Shows advanced info on commands\n\n```*bully``` - Picks on our bot. Are you heartless?\n\n```*invite``` - Shows the Discord Invite Link" +
+        msg.channel.send("Here is a detailed list of commands -\n\n```*greet``` - Replies to you with a greeting\n\n```*help``` - Lists all supported commands\n\n```*detailedhelp``` - Shows advanced info on commands\n\n```*beat``` - Picks on our bot. Are you heartless?\n\n```*invite``` - Shows the Discord Invite Link" +
             "\n\n```*ark``` - Displays basic Ark info\n\n```*helpjoinark``` - Teaches you how to add favorite servers\n\n```*mc``` - Displays basic MC info\n\n```*helpjoinmc``` - Teaches you how to join our Minecraft Server\n\n```*online``` - Checks to see if the Bot is online" +
             "\n\n```*math``` - Let's you calculate any 2 numbers.\n Valid Format - ```InputNumber [Input  Math Operator such as +, -, *, /, ^] InputNumber```\n```*event``` - Shows our next upcoming event for the community");
         client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + cmdArray[3] + "```");
