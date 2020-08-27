@@ -68,7 +68,7 @@ client.on(eventArray[2], async msg => {
 
         if (member.roles.cache.has("615380530480939027")) {
             const reactEmoji1 = msg.guild.emojis.cache.find(e => e.name === "customtools");
-            msg.client.channels.cache.get("615519151431090189").send(
+            msg.client.channels.cache.get("735577954523807866").send(
                 "Are you stuck? Need advice? Need a tag? Perhaps someone is breaking the rules? React with the <:customtools:748540738987622400> icon below and " +
                 "the support category will be shown to you, but **don't forget to click the icon AGAIN once you are done with support** " +
                 "to hide the support category. Otherwise things can start to get messy with a lot of channels visible."
@@ -86,32 +86,32 @@ client.on(eventArray[2], async msg => {
 client.on(eventArray[3], async(reaction, user) => {
     const { guild } = reaction.message;
 
-    if (reaction.message.channel.id === "623254601008939009" && reaction._emoji.name === "dkg") {
+    if (reaction.message.channel.id === "623254601008939009" && reaction._emoji.name === "dkg" && !user.id === "697135587332980736") {
         const role = guild.roles.cache.find((role) => role.id === "615383423665700864");
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.add(role);
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "mc") {
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "mc" && !user.id === "697135587332980736") {
         const role = guild.roles.cache.find((role) => role.id === "615512133999788042");
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.add(role);
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "ark") {
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "ark" && !user.id === "697135587332980736") {
         const role = guild.roles.cache.find((role) => role.id === "615512297170796554");
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.add(role);
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "gamertag") {
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "gamertag" && !user.id === "697135587332980736") {
         const role = guild.roles.cache.find((role) => role.id === "651982607776743426");
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.add(role);
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "twitch") {
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "twitch" && !user.id === "697135587332980736") {
         const role = guild.roles.cache.find((role) => role.id === "652279770129629219");
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.add(role);
     }
-    else if (reaction.message.channel.id === "615519151431090189" && reaction._emoji.name === "customtools") {
+    else if (reaction.message.channel.id === "615519151431090189" && reaction._emoji.name === "customtools" && !user.id === "697135587332980736") {
         const role = guild.roles.cache.find((role) => role.id === "615521211371225109");
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.add(role);
