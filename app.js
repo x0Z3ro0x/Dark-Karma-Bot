@@ -85,36 +85,65 @@ client.on(eventArray[2], async msg => {
 
 client.on(eventArray[3], async(reaction, user) => {
     const { guild } = reaction.message;
+    if (reaction.message.channel.id === "623254601008939009" && reaction._emoji.name === "dkg") {
+        if (user.id === "697135587332980736") {
 
-    if (reaction.message.channel.id === "623254601008939009" && reaction._emoji.name === "dkg" && !user.id === "697135587332980736") {
-        const role = guild.roles.cache.find((role) => role.id === "615383423665700864");
-        const member = guild.members.cache.find((member) => member.id === user.id);
-        member.roles.add(role);
+        }
+        else {
+            const role = guild.roles.cache.find((role) => role.id === "615383423665700864");
+            const member = guild.members.cache.find((member) => member.id === user.id);
+            member.roles.add(role);
+        }
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "mc" && !user.id === "697135587332980736") {
-        const role = guild.roles.cache.find((role) => role.id === "615512133999788042");
-        const member = guild.members.cache.find((member) => member.id === user.id);
-        member.roles.add(role);
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "mc") {
+        if (user.id === "697135587332980736") {
+
+        }
+        else {
+            const role = guild.roles.cache.find((role) => role.id === "615512133999788042");
+            const member = guild.members.cache.find((member) => member.id === user.id);
+            member.roles.add(role);
+        }
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "ark" && !user.id === "697135587332980736") {
-        const role = guild.roles.cache.find((role) => role.id === "615512297170796554");
-        const member = guild.members.cache.find((member) => member.id === user.id);
-        member.roles.add(role);
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "ark") {
+        if (user.id === "697135587332980736") {
+
+        }
+        else {
+            const role = guild.roles.cache.find((role) => role.id === "615512297170796554");
+            const member = guild.members.cache.find((member) => member.id === user.id);
+            member.roles.add(role);
+        }
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "gamertag" && !user.id === "697135587332980736") {
-        const role = guild.roles.cache.find((role) => role.id === "651982607776743426");
-        const member = guild.members.cache.find((member) => member.id === user.id);
-        member.roles.add(role);
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "gamertag") {
+        if (user.id === "697135587332980736") {
+
+        }
+        else {
+            const role = guild.roles.cache.find((role) => role.id === "651982607776743426");
+            const member = guild.members.cache.find((member) => member.id === user.id);
+            member.roles.add(role);
+        }
     }
-    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "twitch" && !user.id === "697135587332980736") {
-        const role = guild.roles.cache.find((role) => role.id === "652279770129629219");
-        const member = guild.members.cache.find((member) => member.id === user.id);
-        member.roles.add(role);
+    else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "twitch") {
+        if (user.id === "697135587332980736") {
+
+        }
+        else {
+            const role = guild.roles.cache.find((role) => role.id === "652279770129629219");
+            const member = guild.members.cache.find((member) => member.id === user.id);
+            member.roles.add(role);
+        }
     }
-    else if (reaction.message.channel.id === "615519151431090189" && reaction._emoji.name === "customtools" && !user.id === "697135587332980736") {
-        const role = guild.roles.cache.find((role) => role.id === "615521211371225109");
-        const member = guild.members.cache.find((member) => member.id === user.id);
-        member.roles.add(role);
+    else if (reaction.message.channel.id === "615519151431090189" && reaction._emoji.name === "customtools") {
+        if (user.id === "697135587332980736") {
+
+        }
+        else {
+            const role = guild.roles.cache.find((role) => role.id === "615521211371225109");
+            const member = guild.members.cache.find((member) => member.id === user.id);
+            member.roles.add(role);
+        }
     }
 });
 
