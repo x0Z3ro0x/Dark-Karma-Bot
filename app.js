@@ -44,7 +44,7 @@ client.on(eventArray[1], () => {
 // Begin listening to messages
 client.on(eventArray[2], async msg => {
     // listen for commands in our command files
-    ///* ---------- FAIL SAFE LINE ----------
+    /* ---------- FAIL SAFE LINE ----------
     if (!msg.content.startsWith(cmdPrefix) || msg.author.bot) return;
     const args = msg.content.slice(cmdPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
@@ -59,19 +59,27 @@ client.on(eventArray[2], async msg => {
     //*/
     //end of command listening
 
-    /* ---------- TESTING WORKSPACE LINE ----------
+    ///* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
     
-    if (msgContent === "*new_helpme") {
+    if (msgContent === "*test") {
         var msgArgs = msg.content.split(" ");
         const member = msg.member;
 
         if (member.roles.cache.has("615380530480939027")) {
-            const reactEmoji1 = msg.guild.emojis.cache.find(e => e.name === "customtools");
-            msg.client.channels.cache.get("735577954523807866").send(
-                "Are you stuck? Need advice? Need a tag? Perhaps someone is breaking the rules? React with the <:customtools:748540738987622400> icon below and " +
-                "the support category will be shown to you, but **don't forget to click the icon AGAIN once you are done with support** " +
-                "to hide the support category. Otherwise things can start to get messy with a lot of channels visible."
+            const reactEmoji1 = msg.guild.emojis.cache.find(e => e.name === "lips1");
+            msg.client.channels.cache.get("652708891485929492").send(
+                "Are you looking to escape the family areas? No worries, we've got you covered, and we get it. Yes we are family based, " +
+                "but that doesn't mean we don't have an area for everyone..or know what it's like to need to get away from the children.\n\n" +
+                "First and foremost let's get some things straight. I am not responsible for what you see in unfiltered rooms. Cussing " +
+                "is allowed with moderation. Normal social rules still apply. Many think 18 + means porn, no rules, and general Chaos. That may " +
+                "be the case elsewhere in the world, it's not the case here.\n\nEntering an adult area means we expect you to act like an " +
+                "adult. Children found in these areas will be instantly banned, without warning, from all non - family areas. What is " +
+                "a child? If you cannot differentiate between a mature adult, and a child, well then you have your answer and you should move on.\n\n" +
+                "Now, this may be a 18 + area, but pornographic content is not allowed, take that sh** somewhere else. 18 + " +
+                "channels and areas simply means all the PG constraints of family areas are gone. Kids are in bed, and it's time " +
+                "for the adults to relax ;)\n\nIf you understand AND accept that as well as acknowledge the mental age requirements, " +
+                "then proceed by clicking the <:lips1:652712561959239690> reaction below."
             ).then(sentEmbed => {
                 sentEmbed.react(reactEmoji1)
             });
@@ -145,6 +153,16 @@ client.on(eventArray[3], async(reaction, user) => {
             member.roles.add(role);
         }
     }
+    else if (reaction.message.channel.id === "652708891485929492" && reaction._emoji.name === "lips1") {
+        if (user.id === "697135587332980736") {
+
+        }
+        else {
+            const role = guild.roles.cache.find((role) => role.id === "615801839706832908");
+            const member = guild.members.cache.find((member) => member.id === user.id);
+            member.roles.add(role);
+        }
+    }
 });
 
 client.on(eventArray[4], async (reaction, user) => {
@@ -177,6 +195,11 @@ client.on(eventArray[4], async (reaction, user) => {
     }
     else if (reaction.message.channel.id === "615519151431090189" && reaction._emoji.name === "customtools") {
         const role = guild.roles.cache.find((role) => role.id === "615521211371225109");
+        const member = guild.members.cache.find((member) => member.id === user.id);
+        member.roles.remove(role);
+    }
+    else if (reaction.message.channel.id === "652708891485929492" && reaction._emoji.name === "lips1") {
+        const role = guild.roles.cache.find((role) => role.id === "615801839706832908");
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.remove(role);
     }
