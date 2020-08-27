@@ -44,7 +44,7 @@ client.on(eventArray[1], () => {
 // Begin listening to messages
 client.on(eventArray[2], async msg => {
     // listen for commands in our command files
-    /* ---------- FAIL SAFE LINE ----------
+    ///* ---------- FAIL SAFE LINE ----------
     if (!msg.content.startsWith(cmdPrefix) || msg.author.bot) return;
     const args = msg.content.slice(cmdPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
@@ -59,7 +59,7 @@ client.on(eventArray[2], async msg => {
     //*/
     //end of command listening
 
-    ///* ---------- TESTING WORKSPACE LINE ----------
+    /* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
     
     if (msgContent === "*test") {
