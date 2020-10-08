@@ -37,9 +37,9 @@ module.exports = {
             ).then(sentEmbed => {
                 sentEmbed.react(reactEmoji1)
                 sentEmbed.react(reactEmoji2)
+                sentEmbed.react(reactEmoji5)
                 sentEmbed.react(reactEmoji3)
                 sentEmbed.react(reactEmoji4)
-                sentEmbed.react(reactEmoji5)
             });
         }
         else {
