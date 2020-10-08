@@ -13,6 +13,7 @@ module.exports = {
             const reactEmoji2 = msg.guild.emojis.cache.find(e => e.name === "ark");
             const reactEmoji3 = msg.guild.emojis.cache.find(e => e.name === "gamertag");
             const reactEmoji4 = msg.guild.emojis.cache.find(e => e.name === "twitch");
+            const reactEmoji5 = msg.guild.emojis.cache.find(e => e.name === "cs");
             msg.client.channels.cache.get("615402768211116035").send(
                 "See fast and harmless! Alright let's continue. In addition to this awesome channel, you should " +
                 "be seeing some some general channels for making friends and just chatting. Please remember, " +
@@ -38,6 +39,7 @@ module.exports = {
                 sentEmbed.react(reactEmoji2)
                 sentEmbed.react(reactEmoji3)
                 sentEmbed.react(reactEmoji4)
+                sentEmbed.react(reactEmoji5)
             });
         }
         else {
