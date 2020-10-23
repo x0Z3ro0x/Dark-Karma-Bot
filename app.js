@@ -33,6 +33,29 @@ const eventArray = [
     "messageReactionRemove"
 ];
 
+// no no word array
+const nonoWordArray = [
+    "fuck",
+    "fucking",
+    "fucker",
+    "fuc",
+    "bitch",
+    "faggot",
+    "cunt",
+    "shit",
+    "bastard",
+    "whore",
+    "shit"
+];
+
+// Don't moderate these channels
+const ignoredChannels = [
+    "735577954523807866",
+    "615510613925429259",
+    "615802995208224768",
+    "694654901803941927"
+];
+
 // Print off to console to let us know the bot is online, and to show us if the bot is trying to reconnect due to any kind of issue. Most likely internet or server outage
 client.on(eventArray[0], () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -46,6 +69,22 @@ client.on(eventArray[1], () => {
 client.on(eventArray[2], async msg => {
     // listen for commands in our command files
     ///* ---------- FAIL SAFE LINE ----------
+    // Chat Moderation
+    const msgContent = msg.content.toLowerCase();
+
+    for (var i = 0; i < nonoWordArray.length; i++) {
+        if (msgContent.includes(nonoWordArray[i]) && !ignoredChannels.includes(msg.channel.id)) {
+            msg.delete();
+            msg.channel.send("Please stop cussing, <@" + msg.author.id + ">!");
+            break;
+        }
+        if  (msg.author.bot === true) {
+            setTimeout(() => { msg.delete(); }, 12000);
+            break;
+        }
+    }
+    // end of Chat Moderation
+    
     if (!msg.content.startsWith(cmdPrefix) || msg.author.bot) return;
     const args = msg.content.slice(cmdPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
@@ -57,8 +96,8 @@ client.on(eventArray[2], async msg => {
         console.error(error);
         msg.channel.send("<@194132431551463424>, There was an issue executing this command! Please figure it out when you can!");
     }
+    // end of command listening
     //*/
-    //end of command listening
 
     /* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
@@ -66,17 +105,19 @@ client.on(eventArray[2], async msg => {
     if (msgContent === "*test") {
         var msgArgs = msg.content.split(" ");
         const member = msg.member;
-
+        
         if (member.roles.cache.has("615380530480939027")) {
-            ping.status('play.hypixel.net')
-                .then((result) => {
-                    msg.channel.send("Take a look\n" + result)
-                    msg.channel.send("Hey look at that everything worked. Congratz, you just bridged the gap between your MC server and discord...");
-                })
-                .catch((error) => {
-                    msg.channel.send("Something went wrong. Most likely a timeout. Check the console for errors Zero.")
-                    throw error;
-                });
+            msg.channel.send("First event fired! Proceeding...");
+            msg.channel.send(msgArgs[1]);
+
+            msg.channel.send("So you want to play a game? You may regret that choice soon. Let's begin...");
+            msg.channel.send("Test Story");
+            if (msgContent === "yes") {
+                msg.channel.send("Success, I read your reply. Continue test story here");
+            }
+            else {
+                msg.channel.send("Game Over.");
+            }
         }
         else {
             msg.channel.send("Sorry Zero beat me until I learned not to let your user group access this command. I won't make that mistake again so come back when you are an OG or Admin.")
