@@ -98,11 +98,8 @@ client.on(eventArray[2], async msg => {
     for (var i = 0; i < nonoWordArray.length; i++) {
         if (msgContent.includes(nonoWordArray[i]) && !ignoredChannels.includes(msg.channel.id) && msg.author.bot === false) {
             msg.delete();
-            msg.channel.send("Please stop cussing, <@" + msg.author.id + ">!");
-            break;
-        }
-        if  (msg.author.bot === true) {
-            setTimeout(() => { msg.delete(); }, 12000);
+            msg.channel.send("Please stop cussing, <@" + msg.author.id + ">!").then(msg => {
+                msg.delete({ timeout:12000 })});
             break;
         }
     };
@@ -110,12 +107,25 @@ client.on(eventArray[2], async msg => {
     // Naughty links check
     for (var i = 0; i < triggers.length; i++) {
         if (msgContent.includes(triggers[i]) && !ignoredChannels2.includes(msg.channel.id) && msg.content !== dkgInvite && msg.author.bot === false) {
-            if (msgContent.includes("tenor.com") || msgContent.includes("github.com") || msgContent.includes("spotify.com") || msgContent.includes("youtube.com")) {
+            if(msg.content.includes('\n')) {
+                msg.delete();
+                msg.channel.send("I detected a break in your link. Fix this and try to post your link again.").then(msg => {
+                msg.delete({ timeout:12000 })});
+                break;
+            }
+            else if (msg.content.includes(' ')) {
+                msg.delete();
+                msg.channel.send("I detected spacing in your link. Fix this and try to post your link again.").then(msg => {
+                msg.delete({ timeout:12000 })});
+                break;
+            }
+            else if (msgContent.includes("https://tenor.com") || msgContent.includes("https://github.com") || msgContent.includes("https://open.spotify.com") || msgContent.includes("https://www.youtube.com")) {
                 break;
             }
             else {
-                msg.channel.send("<@" + msg.author.id + ">, I have detected an illegal link. Removing now...\n\nContinuing to post these links will result in a ban.");
                 msg.delete();
+                msg.channel.send("<@" + msg.author.id + ">, I have detected an illegal link. Removing now...\n\nContinuing to post these links will result in a ban.").then(msg => {
+                msg.delete({ timeout:12000 })});
                 break;
             }
         }
