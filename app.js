@@ -35,9 +35,6 @@ const eventArray = [
 
 // no no word array
 const nonoWordArray = [
-    "fuck",
-    "fucking",
-    "fucker",
     "fuc",
     "bitch",
     "faggot",
@@ -45,7 +42,11 @@ const nonoWordArray = [
     "shit",
     "bastard",
     "whore",
-    "shit"
+    "shit",
+    "nigg",
+    "spic",
+    "beaner",
+    "slut"
 ];
 
 // Don't moderate these channels
@@ -54,6 +55,27 @@ const ignoredChannels = [
     "615510613925429259",
     "615802995208224768",
     "694654901803941927"
+];
+
+const ignoredChannels2 = [
+    "735577954523807866",
+    "615510613925429259",
+    "615802995208224768"
+];
+
+// Link triggers
+const triggers = [
+        "www",
+        "http",
+        ".com"
+    ];
+
+// Allowed links
+const dkgInvite = "https://discord.gg/vZ7KMAe";
+const allowedLinks = [
+    "tenor.com",
+    "github.com",
+    "youtube.com"
 ];
 
 // Print off to console to let us know the bot is online, and to show us if the bot is trying to reconnect due to any kind of issue. Most likely internet or server outage
@@ -72,8 +94,9 @@ client.on(eventArray[2], async msg => {
     // Chat Moderation
     const msgContent = msg.content.toLowerCase();
 
+    // Naughty words check
     for (var i = 0; i < nonoWordArray.length; i++) {
-        if (msgContent.includes(nonoWordArray[i]) && !ignoredChannels.includes(msg.channel.id)) {
+        if (msgContent.includes(nonoWordArray[i]) && !ignoredChannels.includes(msg.channel.id) && msg.author.bot === false) {
             msg.delete();
             msg.channel.send("Please stop cussing, <@" + msg.author.id + ">!");
             break;
@@ -82,7 +105,21 @@ client.on(eventArray[2], async msg => {
             setTimeout(() => { msg.delete(); }, 12000);
             break;
         }
-    }
+    };
+    
+    // Naughty links check
+    for (var i = 0; i < triggers.length; i++) {
+        if (msgContent.includes(triggers[i]) && !ignoredChannels2.includes(msg.channel.id) && msg.content !== dkgInvite && msg.author.bot === false) {
+            if (msgContent.includes("tenor.com") || msgContent.includes("github.com") || msgContent.includes("spotify.com") || msgContent.includes("youtube.com")) {
+                break;
+            }
+            else {
+                msg.channel.send("<@" + msg.author.id + ">, I have detected an illegal link. Removing now...\n\nContinuing to post these links will result in a ban.");
+                msg.delete();
+                break;
+            }
+        }
+    };
     // end of Chat Moderation
     
     if (!msg.content.startsWith(cmdPrefix) || msg.author.bot) return;
@@ -101,23 +138,23 @@ client.on(eventArray[2], async msg => {
 
     /* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
-    
-    if (msgContent === "*test") {
+
+    if (msgContent.includes("www") || msgContent.includes("http")) {
+        console.log(msgContent);
+        if (msg.content === "https://discord.gg/vZ7KMAe") {
+            msg.channel.send("Looks like a valid link! Thanks for sharing our community!");
+        }
+        else {
+            msg.channel.send("<@" + msg.author.id + ">, I have detected an illegal link. Removing now...\n\nContinuing to post these links will result in a ban.");
+            msg.delete();
+        }
+    }
+    /*if (msgContent === "*test") {
         var msgArgs = msg.content.split(" ");
         const member = msg.member;
         
         if (member.roles.cache.has("615380530480939027")) {
-            msg.channel.send("First event fired! Proceeding...");
-            msg.channel.send(msgArgs[1]);
-
-            msg.channel.send("So you want to play a game? You may regret that choice soon. Let's begin...");
-            msg.channel.send("Test Story");
-            if (msgContent === "yes") {
-                msg.channel.send("Success, I read your reply. Continue test story here");
-            }
-            else {
-                msg.channel.send("Game Over.");
-            }
+            msg.channel.send("Test bot is online. Are you ready to do some work sir?");
         }
         else {
             msg.channel.send("Sorry Zero beat me until I learned not to let your user group access this command. I won't make that mistake again so come back when you are an OG or Admin.")
