@@ -46,7 +46,14 @@ const nonoWordArray = [
     "nigg",
     "spic",
     "beaner",
-    "slut"
+    "slut",
+    "inbred",
+    "retard",
+    "twat",
+    "spastic",
+    "tosser",
+    "spaz",
+    "slag"
 ];
 
 // Don't moderate these channels
