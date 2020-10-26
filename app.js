@@ -156,17 +156,7 @@ client.on(eventArray[2], async msg => {
     /* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
 
-    if (msgContent.includes("www") || msgContent.includes("http")) {
-        console.log(msgContent);
-        if (msg.content === "https://discord.gg/vZ7KMAe") {
-            msg.channel.send("Looks like a valid link! Thanks for sharing our community!");
-        }
-        else {
-            msg.channel.send("<@" + msg.author.id + ">, I have detected an illegal link. Removing now...\n\nContinuing to post these links will result in a ban.");
-            msg.delete();
-        }
-    }
-    /*if (msgContent === "*test") {
+    if (msgContent.startsWith("*test")) {
         var msgArgs = msg.content.split(" ");
         const member = msg.member;
         
