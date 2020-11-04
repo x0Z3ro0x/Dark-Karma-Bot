@@ -8,7 +8,7 @@ const ping = require("minecraft-server-util");
 const cmdPrefix = "*";
 
 // Initialize discord client and assign it to client variable | In addition we retrieve and require our authentication token
-const client = new discord.Client({ partials: ["MESSAGE", "REACTION"]});
+const client = new discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 
 // Initialize and declare our command files
 client.commands = new discord.Collection();
@@ -23,15 +23,6 @@ const {
     token
 } = require("./auth.json");
 client.login(token);
-
-// Event array
-const eventArray = [
-    "ready",
-    "reconnecting",
-    "message",
-    "messageReactionAdd",
-    "messageReactionRemove"
-];
 
 // no no word array
 const nonoWordArray = [
@@ -86,16 +77,16 @@ const allowedLinks = [
 ];
 
 // Print off to console to let us know the bot is online, and to show us if the bot is trying to reconnect due to any kind of issue. Most likely internet or server outage
-client.on(eventArray[0], () => {
+client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on(eventArray[1], () => {
+client.on("reconnecting", () => {
     console.log(`${client.user.tag} is trying to reconnect!`);
 });
 
 // Begin listening to messages
-client.on(eventArray[2], async msg => {
+client.on("message", async msg => {
     // listen for commands in our command files
     ///* ---------- FAIL SAFE LINE ----------
     // Chat Moderation
@@ -170,10 +161,12 @@ client.on(eventArray[2], async msg => {
     //*/
 });
 
-client.on(eventArray[3], async(reaction, user) => {
+client.on("messageReactionAdd", async (reaction, user) => {
+    ///* ---------- FAIL SAFE LINE ----------
     const { guild } = reaction.message;
+
     if (reaction.message.channel.id === "623254601008939009" && reaction._emoji.name === "dkg") {
-        if (user.id === "697135587332980736") {
+        if (user.id === "710556819864420382") {
 
         }
         else {
@@ -252,9 +245,11 @@ client.on(eventArray[3], async(reaction, user) => {
             member.roles.add(role);
         }
     }
+    //*/
 });
 
-client.on(eventArray[4], async (reaction, user) => {
+client.on("messageReactionRemove", async (reaction, user) => {
+    ///* ---------- FAIL SAFE LINE ----------
     const { guild } = reaction.message;
 
     if (reaction.message.channel.id === "623254601008939009" && reaction._emoji.name === "dkg") {
@@ -297,4 +292,5 @@ client.on(eventArray[4], async (reaction, user) => {
         const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.remove(role);
     }
+    //*/
 });

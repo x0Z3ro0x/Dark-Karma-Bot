@@ -13,7 +13,7 @@
   "author": "x0Z3ro0x",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.4.1",
     "mathjs": "^7.1.0",
     "minecraft-server-util": "^3.0.2",
     "node-datetime": "^2.1.2"
