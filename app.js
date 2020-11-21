@@ -28,7 +28,7 @@ client.login(token);
 const nonoWordArray = [
     "fuc",
     "bitch",
-    "faggot",
+    "fag",
     "cunt",
     "shit",
     "bastard",
@@ -70,11 +70,6 @@ const triggers = [
 
 // Allowed links
 const dkgInvite = "https://discord.gg/vZ7KMAe";
-const allowedLinks = [
-    "tenor.com",
-    "github.com",
-    "youtube.com"
-];
 
 // Print off to console to let us know the bot is online, and to show us if the bot is trying to reconnect due to any kind of issue. Most likely internet or server outage
 client.on("ready", () => {
@@ -86,7 +81,7 @@ client.on("reconnecting", () => {
 });
 
 // Begin listening to messages
-client.on("message", async msg => {
+client.on("message", async (msg, msgCustom) => {
     // listen for commands in our command files
     ///* ---------- FAIL SAFE LINE ----------
     // Chat Moderation
@@ -98,33 +93,41 @@ client.on("message", async msg => {
             msg.delete();
             msg.channel.send("Please stop cussing, <@" + msg.author.id + ">!").then(msg => {
                 msg.delete({ timeout:12000 })});
+            msg.client.channels.cache.get("615509476317069315").send("I just removed some content posted by - \n\n" + "<@" + msg.author.id + ">" + "\n\nHere is the content I removed -\n\n```" + msg.content + "```");
             break;
         }
     };
     
     // Naughty links check
     for (var i = 0; i < triggers.length; i++) {
+        var member = msg.member;
         if (msgContent.includes(triggers[i]) && !ignoredChannels2.includes(msg.channel.id) && msg.content !== dkgInvite && msg.author.bot === false) {
-            if(msg.content.includes('\n')) {
-                msg.delete();
-                msg.channel.send("I detected a break in your link. Fix this and try to post your link again.").then(msg => {
-                msg.delete({ timeout:12000 })});
-                break;
-            }
-            else if (msg.content.includes(' ')) {
-                msg.delete();
-                msg.channel.send("I detected spacing in your link. Fix this and try to post your link again.").then(msg => {
-                msg.delete({ timeout:12000 })});
-                break;
-            }
-            else if (msgContent.includes("https://tenor.com") || msgContent.includes("https://github.com") || msgContent.includes("https://open.spotify.com") || msgContent.includes("https://www.youtube.com")) {
-                break;
-            }
-            else {
-                msg.delete();
-                msg.channel.send("<@" + msg.author.id + ">, I have detected an illegal link. Removing now...\n\nContinuing to post these links will result in a ban.").then(msg => {
-                msg.delete({ timeout:12000 })});
-                break;
+            if (!member.roles.cache.has("615380530480939027" || "615507508668137493" || "615507860389888020" || "615508127948996608" || "615508552165097524" || "664208918133735450" || "669496793486065695")) {
+                if(msg.content.includes('\n')) {
+                    msg.delete();
+                    msg.channel.send("I detected a break in your link. Fix this and try to post your link again.").then(msg => {
+                        msg.delete({ timeout:12000 })});
+                    msg.client.channels.cache.get("615509476317069315").send("I just removed some content posted by - \n\n" + "<@" + msg.author.id + ">" + "\n\nHere is the content I removed -\n\n```" + msg.content + "```");
+                    break;
+                }
+                else if (msg.content.includes(' ')) {
+                    msg.delete();
+                    msg.channel.send("I detected spacing in your link. Fix this and try to post your link again.").then(msg => {
+                        msg.delete({ timeout:12000 })});
+                    msg.client.channels.cache.get("615509476317069315").send("I just removed some content posted by - \n\n" + "<@" + msg.author.id + ">" + "\n\nHere is the content I removed -\n\n```" + msg.content + "```");
+                    break;
+                }
+                else if (msgContent.includes("https://tenor.com") || msgContent.includes("https://github.com") || msgContent.includes("https://open.spotify.com") || msgContent.includes("https://www.youtube.com")) {
+                    break;
+                }
+                else {
+                    msg.delete();
+                    msg.channel.send("<@" + msg.author.id + ">, I have detected an illegal link. Removing now...\n\nContinuing to post these links will result in a ban.").then(msg => {
+                        msg.delete({ timeout:12000 })});
+                    msg.client.channels.cache.get("615509476317069315").send("I just removed some content posted by - \n\n" + "<@" + msg.author.id + ">" + "\n\nHere is the content I removed -\n\n```" + msg.content + "```");
+                    console.log(member.roles.cache);
+                    break;
+                }
             }
         }
     };
@@ -147,12 +150,23 @@ client.on("message", async msg => {
     /* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
 
+    if (msgCustom) {
+        msg.channel.send(msgCustom);
+    }
     if (msgContent.startsWith("*test")) {
         var msgArgs = msg.content.split(" ");
         const member = msg.member;
+        const upVote = msg.guild.emojis.cache.find(e => e.name === "yes");
+        const downVote = msg.guild.emojis.cache.find(e => e.name === "no");
+        var votesP = 0;
+        var votesN = 0;
         
         if (member.roles.cache.has("615380530480939027")) {
-            msg.channel.send("Test bot is online. Are you ready to do some work sir?");
+            //msg.channel.send("Test bot is online. Are you ready to do some work sir?");
+            msg.channel.send("Test Voting system\nThis test vote has " + votesP + " positive vote(s) and " + votesN + " negative vote(s). React below to cast your vote.").then(sendEmbed => {
+                sendEmbed.react(upVote)
+                sendEmbed.react(downVote)
+            });
         }
         else {
             msg.channel.send("Sorry Zero beat me until I learned not to let your user group access this command. I won't make that mistake again so come back when you are an OG or Admin.")
@@ -162,6 +176,18 @@ client.on("message", async msg => {
 });
 
 client.on("messageReactionAdd", async (reaction, user) => {
+    /* ---------- TESTING WORKSPACE LINE ----------
+    var reactMSG = reaction.message;
+
+    if (reactMSG.channel.id === "735577954523807866" && user.bot === false) {
+        var msgCustom = "One step closer!";
+        
+        client.emit("message");
+    }
+    else {
+        return;
+    }
+    //*/
     ///* ---------- FAIL SAFE LINE ----------
     const { guild } = reaction.message;
 
