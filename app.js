@@ -152,26 +152,55 @@ client.on("message", async (msg, msgCustom) => {
     /* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
 
-    if (msgCustom) {
-        msg.channel.send(msgCustom);
-    }
     if (msgContent.startsWith("*test")) {
         var msgArgs = msg.content.split(" ");
         const member = msg.member;
-        const upVote = msg.guild.emojis.cache.find(e => e.name === "yes");
-        const downVote = msg.guild.emojis.cache.find(e => e.name === "no");
-        var votesP = 0;
-        var votesN = 0;
+        
         
         if (member.roles.cache.has("615380530480939027")) {
             //msg.channel.send("Test bot is online. Are you ready to do some work sir?");
-            msg.channel.send("Test Voting system\nThis test vote has " + votesP + " positive vote(s) and " + votesN + " negative vote(s). React below to cast your vote.").then(sendEmbed => {
-                sendEmbed.react(upVote)
-                sendEmbed.react(downVote)
-            });
+
+            var mentionedUser = msg.mentions.users.first();
+            const args = msg.content.slice(1).trim().split(/ +/);
+            function getUserFromMention(mention) {
+                if (!mention) return;
+
+                if (mention.startsWith('<@') && mention.endsWith('>')) {
+                    mention = mention.slice(2, -1);
+
+                    if (mention.startsWith('!')) {
+                        mention = mention.slice(1);
+                    }
+
+                    return client.users.cache.get(mention);
+                }
+            }
+
+            if (args[0]) {
+                const user = getUserFromMention(args[1]);
+                if (!user) {
+                    return msg.channel.send("Are you stupid or tired? You didn't mention a user.");
+                }
+                else if (user) {
+                    var authorID = mentionedUser.id;
+                    var userRoles = msg.guild.members.cache.get(authorID);
+
+                    if (userRoles.roles.cache.has("615380530480939027") || userRoles.roles.cache.has("615508552165097524")) {
+                        return msg.channel.send("You cannot kick Admins and higher. Remove their role and try again!");
+                    }
+                    else {
+                        var userKicked = msg.guild.member(mentionedUser);
+                        userKicked.kick();
+                        return msg.channel.send("You mentioned -  " + user.username + ". I kicked them from the community so fast it made their head spin.");
+                    }
+                }
+                else {
+                    return msg.channel.send("There seems to be an issue. I didn't catch an undefined user, yet no user was mentioned. Contact x0Z3ro0x for assistance.");
+                }
+            }
         }
         else {
-            msg.channel.send("Sorry Zero beat me until I learned not to let your user group access this command. I won't make that mistake again so come back when you are an OG or Admin.")
+            msg.channel.send("Sorry! Zero beat me until I learned not to let your user group access this command. I won't make that mistake again, so come back when you are an Admin or higher.")
         }
     }
     //*/
@@ -249,7 +278,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
         }
         else {
             const role = guild.roles.cache.find((role) => role.id === "763819991837179924");
-            const memeber = guild.members.cache.find((member) => member.id === user.id);
+            const member = guild.members.cache.find((member) => member.id === user.id);
             member.roles.add(role);
         }
     }
@@ -307,7 +336,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
     }
     else if (reaction.message.channel.id === "615402768211116035" && reaction._emoji.name === "cs") {
         const role = guild.roles.cache.find((role) => role.id === "763819991837179924");
-        const memeber = guild.members.cache.find((member) => member.id === user.id);
+        const member = guild.members.cache.find((member) => member.id === user.id);
         member.roles.remove(role);
     }
     else if (reaction.message.channel.id === "615519151431090189" && reaction._emoji.name === "customtools") {

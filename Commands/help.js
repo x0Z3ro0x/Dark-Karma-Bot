@@ -6,7 +6,10 @@ module.exports = {
     name: "help",
     description: "A simple help command to show all commands",
     execute(msg, args) {
-        msg.channel.send("Currently there are 13 possible commands, \n```\n*greet\n*help\n*detailedhelp\n*beat\n*invite\n*ark\n*helpjoinark\n*mc\n*helpjoinmc\n*online\n*purge (admin only)\n*math\n*event```");
+        msg.delete();
+        msg.channel.send("Currently, there are 12 possible user commands - \n```\n*help\n*detailedhelp\n*invite\n*online\n*greet\n*math\n*beat\n*ark\n*helpjoinark\n*mc\n*helpjoinmc\n*adminhelp```").then(msg => {
+            msg.delete({ timeout: 21000 })
+        });
         msg.client.channels.cache.get("615509476317069315").send(msg.author.username + " just used command - ```" + cmdPrefix + "help```");
     }
 };
