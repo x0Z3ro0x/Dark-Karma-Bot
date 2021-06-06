@@ -7,7 +7,7 @@ module.exports = {
     description: "An admin command to purge messages",
     execute(msg, args) {
         const member = msg.member;
-        if (member.roles.cache.has('615380530480939027')) {
+        if (member.roles.cache.has('615508127948996608') || member.roles.cache.has('615380530480939027')) {
             async function clear() {
                 const msgFetch = await msg.channel.messages.fetch({ limit: 10 });
                 msg.channel.bulkDelete(msgFetch);

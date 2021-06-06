@@ -34,7 +34,7 @@ const nonoWordArray = [
     "bastard",
     "whore",
     "shit",
-    "nigg",
+    "nig",
     "spic",
     "beaner",
     "slut",
@@ -133,6 +133,74 @@ client.on("message", async (msg, msgCustom) => {
             }
         }
     };
+
+    // Support Moderation
+    if (msg.channel.id == "822220047584854017" && msg.author.id != 697135587332980736) {
+        const guildID = client.guilds.cache.get("615379184453156871");
+        const role = guildID.roles.cache.find(role => role.id === "664208918133735450");
+        
+        msg.delete();
+        var caseNum = 0;
+
+        const supportEmbed = {
+            color: 0x800000,
+            title: "Dark Karma Support",
+            url: 'https://discord.js.org',
+            author: {
+                name: "Case Number - #" + caseNum,
+                icon_url: 'https://i.imgur.com/wSTFkRM.png',
+            },
+            description: "<@" + msg.author.id + "> needs some help asap please!",
+            thumbnail: {
+                url: 'https://i.imgur.com/wSTFkRM.png',
+            },
+            fields: [
+                {
+                    name: "Issue -",
+                    value: msg.content,
+                },
+                /*{
+                    name: "\u200b",
+                    value: "\u200b",
+                    inline: false,
+                },
+                {
+                    name: "Inline field title",
+                    value: "field value",
+                    inline: true,
+                },
+                {
+                    name: "Inline field title",
+                    value: "field value",
+                    inline: true,
+                },
+                {
+                    name: "Inline field title",
+                    value: "field value",
+                    inline: true,
+                },
+                */
+            ],
+            image: {
+                url: 'https://i.imgur.com/wSTFkRM.png',
+            },
+            timestamp: new Date(),
+            footer: {
+                text: "Case created",
+                icon_url: 'https://i.imgur.com/wSTFkRM.png',
+            },
+        };
+
+        msg.client.channels.cache.get("851159403855216671").send("<@&" + role.id + ">");
+        msg.client.channels.cache.get("851159403855216671").send({ embed: supportEmbed });
+
+        msg.channel.send("Thanks a lot for the support ticket. Please be patient while a Support Guru reads " +
+            "over your case. If more information is needed or Support Guru's reach a solution, they will reach " +
+            "out to you.").then(msg => {
+                msg.delete({ timeout: 30000 })
+            });
+        return;
+    };
     // end of Chat Moderation
     
     if (!msg.content.startsWith(cmdPrefix) || msg.author.bot) return;
@@ -152,15 +220,17 @@ client.on("message", async (msg, msgCustom) => {
     /* ---------- TESTING WORKSPACE LINE ----------
     const msgContent = msg.content.toLowerCase();
 
-    if (msgContent.startsWith("*test")) {
+    if (msgContent.startsWith("*test") && msgContent.endsWith("*test")) {
         var msgArgs = msg.content.split(" ");
         const member = msg.member;
         
         
         if (member.roles.cache.has("615380530480939027")) {
-            //msg.channel.send("Test bot is online. Are you ready to do some work sir?");
+            //msg.channel.send("I am online and functional. Are you ready to do some work sir?");
 
-            var mentionedUser = msg.mentions.users.first();
+            // Test code for a new kick system 
+
+            /*var mentionedUser = msg.mentions.users.first();
             const args = msg.content.slice(1).trim().split(/ +/);
             function getUserFromMention(mention) {
                 if (!mention) return;
