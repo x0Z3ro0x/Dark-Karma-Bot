@@ -5,6 +5,6 @@ This is the community Discord bot I have started working on. Right now it's pret
 Anyone and everyone. Like I said, this bot aims to give power back to communities. This knowledge is freely given to anyone who wants it. No credit needed, no thanks required.
 
 # What exactly do I need to make this bot work?
-You will want to edit some of the command replies and the group IDs to match your own info, however, keep in mind this is just the source code to the bot. You will need your own token and bot settings on the developer portal of Discord.
+You will want to edit the server.config file to match your own info, however, keep in mind this is just the source code to the bot. You will still need your own token and bot settings on the developer portal of Discord. I can't make that for you.
 
-If you are new to hosting a discord bot, we have created a [wiki](https://github.com/x0Z3ro0x/Dark-Karma-Bot/wiki) to help guide you. Check it out or join the discord if you need further assistance! Seriously, we help all levels of talent, even users without any computer literacy so don't be shy.
+If you are new to hosting a discord bot, or setting up the dev portal, we have created a [wiki](https://github.com/x0Z3ro0x/Dark-Karma-Bot/wiki) to help guide you. Check it out or join the discord if you need further assistance!
