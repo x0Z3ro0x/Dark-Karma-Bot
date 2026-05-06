@@ -1,21 +1,22 @@
 {
   "name": "dark-karma-bot",
-  "version": "1.0.0",
-  "description": "A bot to deem all other bots useless.",
-  "main": "app.js",
+  "version": "2.0.0",
+  "description": "A modular Discord bot for moderation, reaction roles, support, and community tools.",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "keywords": [
     "Dark",
-    "Karma"
+    "Karma",
+    "Discord",
+    "Bot"
   ],
   "author": "x0Z3ro0x",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.4.1",
-    "mathjs": "^7.1.0",
-    "minecraft-server-util": "^3.0.2",
-    "node-datetime": "^2.1.2"
+    "discord.js": "^14.26.4",
+    "mathjs": "^14.8.1",
+    "minecraft-server-util": "^5.4.4"
   }
 }
