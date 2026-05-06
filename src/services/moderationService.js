@@ -4,23 +4,39 @@ const {
 } = require("../config/moderation.config");
 
 const { logRemovedMessage } = require("./logService");
+const { safeDelete, sendTemporaryMessage } = require("../utils/messageUtils");
+const { timers } = require("../config/server.config");
+
+function normalizeText(text) {
+    return text
+        .toLowerCase()
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[\u200B-\u200D\uFEFF]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+}
 
 async function handleBlockedWords(msg) {
     if (msg.author.bot) return false;
     if (ignoredWordChannels.includes(msg.channel.id)) return false;
 
-    const msgContent = msg.content.toLowerCase();
+    const normalizedContent = normalizeText(msg.content);
 
-    const matchedWord = blockedWords.find(word => msgContent.includes(word));
+    const matchedWord = blockedWords.find(word =>
+        normalizedContent.includes(normalizeText(word))
+    );
+
     if (!matchedWord) return false;
 
-    await msg.delete();
+    await safeDelete(msg);
 
-    msg.channel.send(`Please stop cussing, <@${msg.author.id}>!`)
-        .then(reply => reply.delete({ timeout: 12000 }))
-        .catch(console.error);
+    await sendTemporaryMessage(
+        msg.channel,
+        `Please stop cussing, <@${msg.author.id}>!`,
+        timers.shortMessageDelete
+    );
 
-    logRemovedMessage(msg.client, msg.author.id, msg.content);
+    await logRemovedMessage(msg.client, msg.author.id, msg.content);
 
     return true;
 }

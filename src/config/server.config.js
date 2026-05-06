@@ -198,7 +198,16 @@ module.exports = {
         linkTriggers: [
             "www",
             "http",
-            ".com"
+            "https",
+            ".com",
+            ".net",
+            ".org",
+            ".gg",
+            ".io",
+            ".co",
+            ".us",
+            ".dev",
+            ".me"
         ],
 
         /**
@@ -207,10 +216,17 @@ module.exports = {
          */
         allowedLinks: [
             "https://discord.gg/vZ7KMAe",
+            "discord.gg/vZ7KMAe",
             "https://tenor.com",
             "https://github.com",
             "https://open.spotify.com",
-            "https://www.youtube.com"
+            "https://www.youtube.com",
+            "https://youtube.com",
+            "youtube.com",
+            "youtu.be",
+            "https://youtu.be",
+            "spotify.com",
+            "github.com"
         ]
     },
 
